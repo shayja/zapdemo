@@ -1,20 +1,19 @@
-const db = require('./product.model');
+const mongoose = require('mongoose');
+const Product = require('./product.model');
 
-db.mongoose
-    .connect(db.url, {
+mongoose
+    .connect('mongodb://localhost:27017/zapdemo_db', {
+        useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
     .then(() => {
-        console.log('Connected to the database!');
+        console.log('Connected to the zap mongodb database!');
     })
     .catch(err => {
-        console.log('Cannot connect to the database!', err);
+        console.log('Cannot connect to zap mongodb database!', err);
         process.exit();
     });
-
-
-const Product = db.Product;
 
 exports.create = (req, res) => {
     // Validate request
