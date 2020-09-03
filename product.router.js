@@ -19,6 +19,9 @@ module.exports = (app) => {
     // Delete a product with id
     router.delete('/:id', products.delete);
   
+    // Search product by name
+    router.get('/serach:name', products.search);
+
     app.use('/product', router);
 
 };

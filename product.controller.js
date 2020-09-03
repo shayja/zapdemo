@@ -1,19 +1,4 @@
-const mongoose = require('mongoose');
 const Product = require('./product.model');
-
-mongoose
-    .connect('mongodb://localhost:27017/zapdemo_db', {
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => {
-        console.log('Connected to the zap mongodb database!');
-    })
-    .catch(err => {
-        console.log('Cannot connect to zap mongodb database!', err);
-        process.exit();
-    });
 
 exports.create = (req, res) => {
     // Validate request
@@ -125,6 +110,40 @@ exports.delete = (req, res) => {
             console.error(err);
             res.status(500).send({
                 message: `Cannot delete Product #${id}`
+            });
+        });
+};
+
+exports.search = (req, res) => {
+    const name = req.params.name;
+    // Validate request
+    if (!name) {
+        res.status(400).send({ message: 'Product name cannot be empty!' });
+        return;
+    }
+
+    Product.
+        find()
+        .where('name').equals(name)
+        .where('price').gt(500).lt(5000)    //Additional where query
+        // .skip(100)                       // skip the first 100 items
+        .limit(5)                           // limit to n items
+        .sort({ price: 1 })                 // sort ascending by price
+        .select('name price')               // select name+price
+        .exec(/*callback here*/)            // execute the query
+        .then(data => {
+            if (!data) {
+                res.status(404).send({
+                    message: `Product with name=${name} not found!`
+                });
+            } else {
+                res.send(data);
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send({
+                message: `Cannot find Product with name${name}`
             });
         });
 };
