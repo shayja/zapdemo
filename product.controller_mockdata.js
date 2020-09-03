@@ -40,7 +40,26 @@ exports.update = (req, res) => {
     }
 };
 
+exports.updateProps = (req, res) => {
+    console.log(`calling api method: updateProps, id: ${req.params.id}`);
+
+    if (!req.body) {
+        return res.status(400).send({
+            message: 'Data to update can not be empty!'
+        });
+    } else {
+        res.status(200).json({ message: 'ok' });
+    }
+};
+
 exports.delete = (req, res) => {
     console.log(`calling api method: delete, id: ${req.params.id}`);
     res.status(200).json({ message: 'ok' });
+};
+
+exports.search = (req, res) => {
+    const name = req.params.name;
+    console.log(`calling api method: delete, name: ${name}`);
+    res.status(200).json({ message: 'ok' });
+  
 };

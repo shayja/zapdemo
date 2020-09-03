@@ -16,11 +16,14 @@ module.exports = (app) => {
     // Update a single product by its id
     router.put('/:id', products.update);
 
+    // Update some of the product properties.
+    router.patch('/:id', products.updateProps);
+
     // Delete a product with id
     router.delete('/:id', products.delete);
   
     // Search product by name
-    router.get('/serach:name', products.search);
+    router.get('/search/:name', products.search);
 
     app.use('/product', router);
 
