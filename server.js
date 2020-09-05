@@ -17,7 +17,7 @@ app.get('/', (req, res)=> {
     res.json({message: 'Welcome to zap new api'});
 });
 
-require('./product.router')(app);
+app.use('/product', require('./product.router'));
 
 const PORT = process.env.PORT || 8080;
 
@@ -33,8 +33,8 @@ app.on('app-is-ready', function() {
 const mongoose = require('mongoose');
 // Set up mongoose connection
 mongoose.connect(
-    process.env.DB_CONN_STR, {
-    // 'mongodb://localhost:27017/zapdemo_db', {
+    //process.env.DB_CONN_STR, {
+    'mongodb://localhost:27017/zapdemo_db', {
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,

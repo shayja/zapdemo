@@ -27,6 +27,7 @@ exports.create = async (req, res) => {
 };
 
 exports.findAll = async (req, res) => { 
+    console.log('calling api method: findAll');
     try {
         const products = await Product.find();
         res.send(products);
@@ -38,8 +39,8 @@ exports.findAll = async (req, res) => {
 
 /**
  * Get a single product by its id.
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.findOne = async (req, res) => {
     console.log(`calling api method: findOne, id: ${req.params.id}`);
@@ -111,7 +112,7 @@ exports.updateProps = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-exports.delete = async (req, res) => {
+exports._delete = async (req, res) => {
     const id = req.params.id;
 
     try {

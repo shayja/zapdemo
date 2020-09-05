@@ -1,30 +1,27 @@
-module.exports = (app) => {
 
-    const router = require('express').Router();
-  
-    const products = require('./product.controller');
+const router = require('express').Router();
 
-    // Create a new product
-    router.post('/', products.create);
+const products = require('./product.controller');
 
-    // Retrieve all products
-    router.get('/', products.findAll);
+// Create a new product
+router.post('/', products.create);
 
-    // Retrieve a single product by its id
-    router.get('/:id', products.findOne);
+// Retrieve all products
+router.get('/', products.findAll);
 
-    // Update a single product by its id
-    router.put('/:id', products.update);
+// Retrieve a single product by its id
+router.get('/:id', products.findOne);
 
-    // Update some of the product properties.
-    router.patch('/:id', products.updateProps);
+// Update a single product by its id
+router.put('/:id', products.update);
 
-    // Delete a product with id
-    router.delete('/:id', products.delete);
-  
-    // Search product by name
-    router.get('/search/:name', products.search);
+// Update some of the product properties.
+router.patch('/:id', products.updateProps);
 
-    app.use('/product', router);
+// Delete a product with id
+router.delete('/:id', products._delete);
 
-};
+// Search product by name
+router.get('/search/:name', products.search);
+
+module.exports = router;
