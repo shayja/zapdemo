@@ -36,6 +36,11 @@ exports.findAll = async (req, res) => {
     }
 };
 
+/**
+ * Get a single product by its id.
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.findOne = async (req, res) => {
     console.log(`calling api method: findOne, id: ${req.params.id}`);
 
@@ -54,6 +59,11 @@ exports.findOne = async (req, res) => {
     }
 };
 
+/**
+ * update the Product with the new properties.
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.update = async (req, res) => {
     if (!req.body) {
         return res.status(400).send({ error: 'Product to update can not be empty!' });
@@ -74,7 +84,11 @@ exports.update = async (req, res) => {
     }
 };
 
-// Update few properties of a model.
+/**
+ * Update some properties of a model.
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.updateProps = async (req, res) => {
     
     const id = req.params.id;
@@ -92,7 +106,11 @@ exports.updateProps = async (req, res) => {
     }
 };
 
-// Delete a Product with the specified id in the request
+/**
+ * Delete a Product with the specified id in the request
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.delete = async (req, res) => {
     const id = req.params.id;
 
@@ -106,7 +124,11 @@ exports.delete = async (req, res) => {
     }
 };
 
-
+/**
+ * Search product with the specified name
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.search = async (req, res) => {
     const name = req.params.name;
     

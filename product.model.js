@@ -12,7 +12,10 @@ const schema = Schema(
         description: String,
         price: Number
     },
-    { timestamps: true }
+    { 
+        timestamps: true,
+        versionKey: false
+    }
 );
 
 module.exports = mongoose.model('Product', schema);
