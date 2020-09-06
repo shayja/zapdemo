@@ -17,7 +17,7 @@ app.get('/', (req, res)=> {
     res.json({message: 'Welcome to zap new api'});
 });
 
-app.use('/product', require('./product.router'));
+app.use('/products', require('./product.router'));
 
 const PORT = process.env.PORT || 8080;
 

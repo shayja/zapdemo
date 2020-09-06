@@ -133,6 +133,8 @@ exports._delete = async (req, res) => {
 exports.search = async (req, res) => {
     const name = req.params.name;
     
+    console.log(`calling api method: search, name: ${name}`);
+
     // Validate request
     if (!name) {
         return res.status(400).send({ error: 'Product name cannot be empty!' });
