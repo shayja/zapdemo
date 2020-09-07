@@ -1,5 +1,8 @@
 const Product = require('./product.model');
 
+/**
+ * Create a new product.
+ */
 exports.create = async (req, res) => {
     // Validate request
     if (!req.body.name) {
@@ -26,6 +29,9 @@ exports.create = async (req, res) => {
     }
 };
 
+/**
+ * Get all products.
+ */
 exports.findAll = async (req, res) => { 
     console.log('calling api method: findAll');
     try {
@@ -38,9 +44,7 @@ exports.findAll = async (req, res) => {
 };
 
 /**
- * Get a single product by its id.
- * @param {*} req
- * @param {*} res
+ * Get a single product by id.
  */
 exports.findOne = async (req, res) => {
     console.log(`calling api method: findOne, id: ${req.params.id}`);
@@ -62,8 +66,6 @@ exports.findOne = async (req, res) => {
 
 /**
  * update the Product with the new properties.
- * @param {*} req 
- * @param {*} res 
  */
 exports.update = async (req, res) => {
     if (!req.body) {
@@ -87,8 +89,6 @@ exports.update = async (req, res) => {
 
 /**
  * Update some properties of a model.
- * @param {*} req 
- * @param {*} res 
  */
 exports.updateProps = async (req, res) => {
     
@@ -109,8 +109,6 @@ exports.updateProps = async (req, res) => {
 
 /**
  * Delete a Product with the specified id in the request
- * @param {*} req 
- * @param {*} res 
  */
 exports._delete = async (req, res) => {
     const id = req.params.id;
@@ -124,6 +122,25 @@ exports._delete = async (req, res) => {
         res.status(404).send({ error: `Product with id=${id} not found!` });
     }
 };
+
+/**
+ * Delete all products from the database.
+ */
+exports.deleteAll = (req, res) => {
+    console.log('calling api method: deleteAll');
+    Product.deleteMany({})
+      .then(data => {
+        res.send({
+          message: `${data.deletedCount} Products were deleted successfully!`
+        });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while removing all products."
+        });
+      });
+  };
 
 /**
  * Search product with the specified name

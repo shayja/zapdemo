@@ -21,6 +21,8 @@ router.patch('/:id', products.updateProps);
 // Delete a product with id
 router.delete('/:id', products._delete);
 
+router.delete('/', products.deleteAll);
+
 // Search product by name
 router.get('/search/:name', products.search);
 
