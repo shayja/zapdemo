@@ -18,4 +18,11 @@ const schema = Schema(
     }
 );
 
+schema.set('toJSON', {
+    transform: function (_doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+    }
+}); 
+
 module.exports = mongoose.model('Product', schema);
