@@ -12,7 +12,7 @@ const schema = Schema(
         description: String,
         price: Number
     },
-    { 
+    {
         timestamps: true,
         versionKey: false
     }
@@ -23,6 +23,6 @@ schema.set('toJSON', {
         ret.id = ret._id;
         delete ret._id;
     }
-}); 
+});
 
 module.exports = mongoose.model('Product', schema);

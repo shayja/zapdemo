@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
         // Save Product in the database
         await product.save();
         res.send(product);
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         res.status(500).send({ error: err.message || 'Error occurred while creating the product.' });
     }
@@ -32,12 +32,12 @@ exports.create = async (req, res) => {
 /**
  * Get all products.
  */
-exports.findAll = async (req, res) => { 
+exports.findAll = async (req, res) => {
     console.log('calling api method: findAll');
     try {
         const products = await Product.find();
         res.send(products);
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         res.status(500).send({ error: err.message || 'Some error occurred while retrieving products.' });
     }
@@ -53,12 +53,12 @@ exports.findOne = async (req, res) => {
 
     try {
         const product = await Product.findById(id);
-        if (!product){
-            res.status(404).send({ error: `Product with id=${id} not found!`});
+        if (!product) {
+            res.status(404).send({ error: `Product with id=${id} not found!` });
         } else {
             res.send(product);
         }
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         res.status(500).send({ message: `Error retrieving Product with id=${id}` });
     }
@@ -81,7 +81,7 @@ exports.update = async (req, res) => {
         } else {
             res.send({ message: 'Product was updated successfully.' });
         }
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         res.status(500).send({ error: `Cannot update Product #${id}` });
     }
@@ -91,12 +91,12 @@ exports.update = async (req, res) => {
  * Update some properties of a model.
  */
 exports.updateProps = async (req, res) => {
-    
+
     const id = req.params.id;
 
     try {
         const product = await Product.findOne({ _id: id });
-    
+
         if (req.body.name) {
             product.name = req.body.name;
         }
@@ -117,7 +117,7 @@ exports._delete = async (req, res) => {
         await Product.findByIdAndRemove(id, { useFindAndModify: false });
         console.log('Product was deleted successfully!');
         res.status(204).send();
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         res.status(404).send({ error: `Product with id=${id} not found!` });
     }
@@ -129,18 +129,18 @@ exports._delete = async (req, res) => {
 exports.deleteAll = (req, res) => {
     console.log('calling api method: deleteAll');
     Product.deleteMany({})
-      .then(data => {
-        res.send({
-          message: `${data.deletedCount} Products were deleted successfully!`
+        .then(data => {
+            res.send({
+                message: `${data.deletedCount} Products were deleted successfully!`
+            });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || 'Some error occurred while removing all products.'
+            });
         });
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while removing all products."
-        });
-      });
-  };
+};
 
 /**
  * Search product with the specified name
@@ -149,7 +149,7 @@ exports.deleteAll = (req, res) => {
  */
 exports.search = async (req, res) => {
     const name = req.params.name;
-    
+
     console.log(`calling api method: search, name: ${name}`);
 
     // Validate request
@@ -162,7 +162,7 @@ exports.search = async (req, res) => {
             .find()
             .where('name').equals(name)
             .where('price').gt(500).lt(5000)    //Additional where query
-        // .skip(100)                           // skip the first 100 items
+            // .skip(100)                           // skip the first 100 items
             .limit(5)                           // limit to n items
             .sort({ price: 1 })                 // sort ascending by price
             .select('name price')               // select name+price
@@ -172,7 +172,7 @@ exports.search = async (req, res) => {
         } else {
             res.send(data);
         }
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         res.status(500);
         res.send({ error: `Cannot find Product with name${name}` });
