@@ -14,7 +14,6 @@ app.listen(PORT, () => {
     console.log(`Server is runing on port ${PORT}`);
 });
 
-
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to zap api' });
 });

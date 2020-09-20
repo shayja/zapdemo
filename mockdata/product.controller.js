@@ -1,8 +1,8 @@
 exports.create = (req, res) => {
     console.log('calling api method: create, params:', req.body);
 
-    if (!req.body.name){
-        res.status(404).json({message: 'חובה לשלוח את שם המוצר'});
+    if (!req.body.name) {
+        res.status(404).json({ message: 'חובה לשלוח את שם המוצר' });
     } else {
         res.status(200).json({ message: 'ok' });
     }
@@ -10,20 +10,20 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
     console.log('calling api method: findAll');
-    const data =  [
-        {'id': 'abc', 'name': 'Galaxy S20', 'price': 4000}, 
-        {'id': 'def', 'name': 'Iphone X', 'price': 4500}
+    const data = [
+        { 'id': 'abc', 'name': 'Galaxy S20', 'price': 4000 },
+        { 'id': 'def', 'name': 'Iphone X', 'price': 4500 }
     ];
     res.status(200).json(data);
 };
 
 exports.findOne = (req, res) => {
     console.log(`calling api method: findOne, id: ${req.params.id}`);
-    const data =  [
-        {'id': 'abc', 'name': 'Galaxy S20', 'price': 4000}, 
-        {'id': 'def', 'name': 'Iphone X', 'price': 4500}
+    const data = [
+        { 'id': 'abc', 'name': 'Galaxy S20', 'price': 4000 },
+        { 'id': 'def', 'name': 'Iphone X', 'price': 4500 }
     ];
-    const p = data.find(x=>x.id === req.params.id);
+    const p = data.find(x => x.id === req.params.id);
     console.log(p);
     res.status(200).json(p);
 };
@@ -59,7 +59,7 @@ exports.delete = (req, res) => {
 
 exports.search = (req, res) => {
     const name = req.params.name;
-    console.log(`calling api method: delete, name: ${name}`);
+    console.log(`calling api method: search, name: ${name}`);
     res.status(200).json({ message: 'ok' });
-  
+
 };
