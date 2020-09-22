@@ -1,4 +1,3 @@
-
 const router = require('express').Router();
 
 const products = require('./product.controller');
@@ -9,18 +8,19 @@ router.post('/', products.create);
 // Retrieve all products
 router.get('/', products.findAll);
 
-// Retrieve a single product by its id
+// Retrieve a single product by id
 router.get('/:id', products.findOne);
 
-// Update a single product by its id
+// Update a single product by id
 router.put('/:id', products.update);
 
-// Update some of the product properties.
+// Update some of the product properties
 router.patch('/:id', products.updateProps);
 
-// Delete a product with id
+// Delete a single product
 router.delete('/:id', products._delete);
 
+// Delete all products
 router.delete('/', products.deleteAll);
 
 // Search product by name

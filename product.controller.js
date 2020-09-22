@@ -5,8 +5,9 @@ const Product = require('./product.model');
  */
 exports.create = async (req, res) => {
     // Validate request
+
     if (!req.body.name) {
-        res.status(400).send({ error: 'Product name cannot be empty!' });
+        res.status(404).json({ message: 'חובה לשלוח את שם המוצר' });
         return;
     }
 
