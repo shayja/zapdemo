@@ -17,5 +17,8 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to zap api' });
 });
-
+/*
+const logger = require('./logger');
+logger.log('Hi Zap, hello from logger')
+*/
 app.use('/product', require('./product.router'));

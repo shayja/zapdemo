@@ -57,6 +57,11 @@ exports.delete = (req, res) => {
     res.status(200).json({ message: 'ok' });
 };
 
+exports.deleteAll = (req, res) => {
+    console.log('calling api method: deleteAll');
+    res.status(200).json({ message: 'ok' });
+};
+
 exports.search = (req, res) => {
     const name = req.params.name;
     console.log(`calling api method: search, name: ${name}`);

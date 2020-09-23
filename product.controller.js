@@ -7,7 +7,7 @@ exports.create = async (req, res) => {
     // Validate request
 
     if (!req.body.name) {
-        res.status(404).json({ message: 'ηεαδ μωμεη ΰϊ ων δξεφψ' });
+        res.status(404).json({ message: 'Χ—Χ•Χ‘Χ” ΧΧ©ΧΧ•Χ— ΧΧª Χ©Χ Χ”ΧΧ•Χ¦Χ¨' });
         return;
     }
 
