@@ -35,6 +35,8 @@ router.delete('/:id', function (req, res) {
     res.status(200).json('OK - product deleted');
 });
 
+
+
 // Search product by name
 router.get('/search/:name', function (req, res) {
     console.log(req.body.name);

@@ -35,6 +35,11 @@ router.delete('/:id', (req, res) => {
     res.status(200).json('OK - product deleted');
 });
 
+// Delete all products
+router.delete('/', (req, res) => {
+    res.status(200).json('OK - deleted all products');
+});
+
 // Search product by name
 router.get('/search/:name', (req, res) => {
     console.log(req.body.name);
